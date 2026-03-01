@@ -36,13 +36,15 @@
 
     /* NAV */
     nav{background:white;border-bottom:3px solid var(--pink-mid);position:sticky;top:0;z-index:100;box-shadow:0 2px 15px rgba(255,120,150,0.2);}
-    .nav-top{max-width:1000px;margin:0 auto;display:flex;align-items:center;padding:0 15px;gap:3px;overflow-x:auto;scrollbar-width:none;}
-    .nav-top::-webkit-scrollbar{display:none;}
-    .month-tab{display:flex;flex-direction:column;align-items:center;padding:9px 13px;text-decoration:none;color:var(--text-light);font-size:.75rem;font-weight:700;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all 0.25s;line-height:1.3;}
+    .nav-inner{max-width:1000px;margin:0 auto;padding:0 12px;}
+    .nav-year-row{display:flex;align-items:center;flex-wrap:wrap;gap:2px;border-bottom:1px solid #ffeef2;padding:2px 0;}
+    .nav-year-row:last-of-type{border-bottom:none;}
+    .nav-year-label{font-size:.7rem;font-weight:800;color:#e05070;background:linear-gradient(135deg,#ff9ab0,#ffb7c5);color:white;padding:3px 9px;border-radius:12px;margin-right:4px;white-space:nowrap;flex-shrink:0;}
+    .month-tab{display:flex;flex-direction:column;align-items:center;padding:7px 11px;text-decoration:none;color:var(--text-light);font-size:.73rem;font-weight:700;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all 0.25s;line-height:1.3;}
     .month-tab:hover,.month-tab.active{color:#e05070;border-bottom-color:#e05070;}
-    .nav-sub{font-size:.65rem;color:var(--text-light);font-weight:400;}
-    .nav-jump{margin-left:auto;display:flex;align-items:center;gap:8px;padding:6px 0;flex-shrink:0;}
-    .nav-jump select{border:2px solid var(--pink-mid);border-radius:20px;padding:4px 10px;font-family:'Nanum Gothic',sans-serif;font-size:.75rem;color:var(--text);background:white;cursor:pointer;outline:none;max-width:130px;}
+    .nav-sub{font-size:.62rem;color:var(--text-light);font-weight:400;}
+    .nav-jump-row{display:flex;align-items:center;justify-content:flex-end;padding:5px 0 6px;border-top:1px solid #ffeef2;}
+    .nav-jump-row select{border:2px solid var(--pink-mid);border-radius:20px;padding:4px 10px;font-family:'Nanum Gothic',sans-serif;font-size:.75rem;color:var(--text);background:white;cursor:pointer;outline:none;max-width:180px;}
 
     /* MAIN */
     main{max-width:1000px;margin:0 auto;padding:30px 20px 80px;}
@@ -104,7 +106,9 @@
       .gallery{grid-template-columns:repeat(auto-fill,minmax(95px,1fr));gap:6px;}
       .day-date{display:none;}
       .diary-card{padding:15px;}
-      .nav-jump{display:none;}
+      .nav-jump-row{display:none;}
+      .nav-year-label{font-size:.65rem;padding:2px 7px;}
+      .month-tab{padding:6px 8px;font-size:.68rem;}
     }
   </style>
 </head>
@@ -128,20 +132,26 @@
 </header>
 
 <nav>
-  <div class="nav-top">
-    <a href="#m202303" class="month-tab" data-month="202303">2023년 3월<br><span class="nav-sub">17일</span></a>
-    <a href="#m202304" class="month-tab" data-month="202304">2023년 4월<br><span class="nav-sub">20일</span></a>
-    <a href="#m202305" class="month-tab" data-month="202305">2023년 5월<br><span class="nav-sub">20일</span></a>
-    <a href="#m202306" class="month-tab" data-month="202306">2023년 6월<br><span class="nav-sub">21일</span></a>
-    <a href="#m202307" class="month-tab" data-month="202307">2023년 7월<br><span class="nav-sub">19일</span></a>
-    <a href="#m202308" class="month-tab" data-month="202308">2023년 8월<br><span class="nav-sub">21일</span></a>
-    <a href="#m202309" class="month-tab" data-month="202309">2023년 9월<br><span class="nav-sub">19일</span></a>
-    <a href="#m202310" class="month-tab" data-month="202310">2023년 10월<br><span class="nav-sub">19일</span></a>
-    <a href="#m202311" class="month-tab" data-month="202311">2023년 11월<br><span class="nav-sub">23일</span></a>
-    <a href="#m202312" class="month-tab" data-month="202312">2023년 12월<br><span class="nav-sub">20일</span></a>
-    <a href="#m202401" class="month-tab" data-month="202401">2024년 1월<br><span class="nav-sub">20일</span></a>
-    <a href="#m202402" class="month-tab" data-month="202402">2024년 2월<br><span class="nav-sub">15일</span></a>
-    <div class="nav-jump">
+  <div class="nav-inner">
+    <div class="nav-year-row">
+      <span class="nav-year-label">2023</span>
+      <a href="#m202303" class="month-tab" data-month="202303">3월<br><span class="nav-sub">17일</span></a>
+      <a href="#m202304" class="month-tab" data-month="202304">4월<br><span class="nav-sub">20일</span></a>
+      <a href="#m202305" class="month-tab" data-month="202305">5월<br><span class="nav-sub">20일</span></a>
+      <a href="#m202306" class="month-tab" data-month="202306">6월<br><span class="nav-sub">21일</span></a>
+      <a href="#m202307" class="month-tab" data-month="202307">7월<br><span class="nav-sub">19일</span></a>
+      <a href="#m202308" class="month-tab" data-month="202308">8월<br><span class="nav-sub">21일</span></a>
+      <a href="#m202309" class="month-tab" data-month="202309">9월<br><span class="nav-sub">19일</span></a>
+      <a href="#m202310" class="month-tab" data-month="202310">10월<br><span class="nav-sub">19일</span></a>
+      <a href="#m202311" class="month-tab" data-month="202311">11월<br><span class="nav-sub">23일</span></a>
+      <a href="#m202312" class="month-tab" data-month="202312">12월<br><span class="nav-sub">20일</span></a>
+    </div>
+    <div class="nav-year-row">
+      <span class="nav-year-label">2024</span>
+      <a href="#m202401" class="month-tab" data-month="202401">1월<br><span class="nav-sub">20일</span></a>
+      <a href="#m202402" class="month-tab" data-month="202402">2월<br><span class="nav-sub">15일</span></a>
+    </div>
+    <div class="nav-jump-row">
       <select onchange="jumpTo(this)">
         <option value="">날짜 이동 ▼</option>
 <optgroup label="2023년 3월">
