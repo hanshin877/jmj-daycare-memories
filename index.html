@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정민재의 어린이집 추억록 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Pen+Script&display=swap');
+
+    :root {
+      --pink: #ffb7c5;
+      --pink-light: #fff0f3;
+      --pink-mid: #ffd6df;
+      --yellow: #fff3cd;
+      --yellow-dark: #ffc107;
+      --purple: #e8d5f5;
+      --green: #d4edda;
+      --blue: #d1ecf1;
+      --text: #5a3a4a;
+      --text-light: #9a7a8a;
+      --white: #ffffff;
+      --shadow: 0 4px 20px rgba(255, 120, 150, 0.15);
+      --radius: 20px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Nanum Gothic', sans-serif;
+      background: linear-gradient(135deg, #fff0f3 0%, #fff9e6 50%, #f0f8ff 100%);
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, #ff9ab0, #ffb7c5, #ffd6df);
+      text-align: center;
+      padding: 60px 20px 80px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 30px rgba(255, 100, 130, 0.3);
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+      animation: shimmer 4s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(10%, 5%); }
+    }
+    .header-emoji {
+      font-size: 4rem;
+      margin-bottom: 15px;
+      display: block;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    header h1 {
+      font-family: 'Nanum Pen Script', cursive;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: white;
+      text-shadow: 2px 3px 8px rgba(180, 60, 80, 0.3);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    header p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 700;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+    }
+    .header-decoration {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.4;
+    }
+    .dec1 { top: 15%; left: 8%; animation: float1 3s ease-in-out infinite; }
+    .dec2 { top: 25%; right: 10%; animation: float2 4s ease-in-out infinite; }
+    .dec3 { bottom: 20%; left: 5%; animation: float1 5s ease-in-out infinite; }
+    .dec4 { bottom: 15%; right: 8%; animation: float2 3.5s ease-in-out infinite; }
+    .dec5 { top: 50%; left: 20%; animation: float1 4.5s ease-in-out infinite; }
+    .dec6 { top: 40%; right: 18%; animation: float2 4s ease-in-out infinite; }
+    @keyframes float1 {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-12px) rotate(5deg); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0) rotate(5deg); }
+      50% { transform: translateY(-8px) rotate(-5deg); }
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      background: white;
+      border-bottom: 3px solid var(--pink-mid);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(255,120,150,0.2);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 10px;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 18px;
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -3px;
+      transition: all 0.3s;
+    }
+    nav a .nav-day { font-size: 1.1rem; color: var(--text); }
+    nav a:hover, nav a.active {
+      color: #e05070;
+      border-bottom-color: #e05070;
+    }
+    nav a:hover .nav-day, nav a.active .nav-day { color: #e05070; }
+
+    /* ===== MAIN ===== */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* ===== DAY SECTION ===== */
+    .day-section {
+      margin-bottom: 70px;
+      scroll-margin-top: 70px;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px dashed var(--pink-mid);
+    }
+    .day-badge {
+      background: linear-gradient(135deg, #ff9ab0, #ffb7c5);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 30px;
+      box-shadow: 0 3px 10px rgba(255,100,130,0.35);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .day-title {
+      font-family: 'Nanum Pen Script', cursive;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      color: #d4506a;
+    }
+    .day-date {
+      margin-left: auto;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ===== PHOTO GALLERY ===== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+    .gallery-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .gallery-item:hover {
+      transform: scale(1.04) rotate(1deg);
+      box-shadow: 0 8px 30px rgba(255,100,130,0.3);
+    }
+    .gallery-item:nth-child(even):hover { transform: scale(1.04) rotate(-1deg); }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.3s;
+    }
+    .gallery-item:hover img { filter: brightness(1.05); }
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,100,130,0.0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .gallery-item:hover .overlay {
+      background: rgba(255,100,130,0.15);
+    }
+    .overlay-icon {
+      font-size: 2rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .overlay-icon { opacity: 1; }
+
+    /* ===== DIARY CARD ===== */
+    .diary-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px 30px;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--pink);
+      position: relative;
+      overflow: hidden;
+    }
+    .diary-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      font-size: 6rem;
+      color: var(--pink-mid);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .diary-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #e05070;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .diary-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--pink-mid);
+    }
+    .diary-text {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+      white-space: pre-wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    #lightbox.active { display: flex; }
+    #lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 10px 60px rgba(0,0,0,0.5);
+      animation: zoomIn 0.3s ease;
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    #lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 25px;
+      font-size: 2.5rem;
+      color: white;
+      cursor: pointer;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    #lightbox-close:hover { background: rgba(255,100,130,0.5); }
+    #lightbox-prev, #lightbox-next {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    #lightbox-prev { left: 15px; }
+    #lightbox-next { right: 15px; }
+    #lightbox-prev:hover, #lightbox-next:hover { background: rgba(255,100,130,0.5); }
+    #lightbox-counter {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.4);
+      padding: 6px 18px;
+      border-radius: 20px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: white;
+      border-top: 3px solid var(--pink-mid);
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    footer .heart { color: #e05070; font-size: 1.1rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+      .day-date { display: none; }
+      .diary-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <span class="header-decoration dec1">🌸</span>
+  <span class="header-decoration dec2">⭐</span>
+  <span class="header-decoration dec3">🍀</span>
+  <span class="header-decoration dec4">🌙</span>
+  <span class="header-decoration dec5">💛</span>
+  <span class="header-decoration dec6">🌷</span>
+  <span class="header-emoji">🍼</span>
+  <h1>정민재의 어린이집 추억록</h1>
+  <p>2023년 3월 · 처음 시작한 어린이집 이야기</p>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#day1"><span class="nav-day">3/2</span>첫째날</a>
+    <a href="#day2"><span class="nav-day">3/3</span>둘째날</a>
+    <a href="#day3"><span class="nav-day">3/6</span>셋째날</a>
+    <a href="#day4"><span class="nav-day">3/7</span>넷째날</a>
+    <a href="#day5"><span class="nav-day">3/8</span>다섯째날</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- DAY 1: 2023-03-02 -->
+  <section class="day-section" id="day1">
+    <div class="day-header">
+      <span class="day-badge">첫째날 🌱</span>
+      <h2 class="day-title">새로운 선생님과의 첫만남</h2>
+      <span class="day-date">2023년 3월 2일 목요일</span>
+    </div>
+    <div class="gallery" data-day="0">
+      <div class="gallery-item" onclick="openLightbox(0,0)">
+        <img src="20230302_082644/image_0.jpg" alt="2023-03-02 사진 1" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(0,1)">
+        <img src="20230302_082644/image_1.jpg" alt="2023-03-02 사진 2" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(0,2)">
+        <img src="20230302_082644/image_2.jpg" alt="2023-03-02 사진 3" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(0,3)">
+        <img src="20230302_082644/image_3.jpg" alt="2023-03-02 사진 4" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(0,4)">
+        <img src="20230302_082644/image_4.jpg" alt="2023-03-02 사진 5" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(0,5)">
+        <img src="20230302_082644/image_5.jpg" alt="2023-03-02 사진 6" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+    </div>
+    <div class="diary-card">
+      <div class="diary-label">📝 선생님 일기</div>
+      <p class="diary-text">안녕하세요^^
+오늘은 새로운 선생님과 함께한 첫날이에요^^
+엄마, 아빠 곁을 잠시 떠나 새로운 친구들과 선생님들이 낯설어 많이 울기도 했지만, 푹 자고 나니 기분이 좋아서 잘 웃고 놀잇감도 만져보고 했답니다.
+사랑스러운 민재 오늘 푹쉬고 내일은 웃는얼굴로 만날게요♡♡</p>
+    </div>
+  </section>
+
+  <!-- DAY 2: 2023-03-03 -->
+  <section class="day-section" id="day2">
+    <div class="day-header">
+      <span class="day-badge">둘째날 🌼</span>
+      <h2 class="day-title">까르르~ 잘 웃는 민재</h2>
+      <span class="day-date">2023년 3월 3일 금요일</span>
+    </div>
+    <div class="gallery" data-day="1">
+      <div class="gallery-item" onclick="openLightbox(1,0)">
+        <img src="20230303_080854/image_0.jpg" alt="2023-03-03 사진 1" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(1,1)">
+        <img src="20230303_080854/image_1.jpg" alt="2023-03-03 사진 2" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(1,2)">
+        <img src="20230303_080854/image_2.jpg" alt="2023-03-03 사진 3" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(1,3)">
+        <img src="20230303_080854/image_3.jpg" alt="2023-03-03 사진 4" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(1,4)">
+        <img src="20230303_080854/image_4.jpg" alt="2023-03-03 사진 5" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(1,5)">
+        <img src="20230303_080854/image_5.jpg" alt="2023-03-03 사진 6" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+    </div>
+    <div class="diary-card">
+      <div class="diary-label">📝 선생님 일기</div>
+      <p class="diary-text">민재와 함께한 두번째 날이에요^^
+오전에 잠을 푹 자고나면 컨디션이 너무 좋은 민재를 오늘은 제가 같이 놀아볼려고 일찍 깨운게 미안하더라구요ㅠㅠ한시간 정도 자고나서 소리나는 딸랑이 인형을 흔들어주니 "까르르" 너무 잘웃어요♡
+잘놀다가 또 울음을 보이고ㅎ또 놀다가 울고를 반복하긴 했지만 저한테 애착을 보이는 모습이 마냥 사랑스러워요🥰
+옆에 포대기를 보더니 가르키며 울려고 해서 업어주니 등에기대어 가만히 있기도했어요 ㅎ
+멋진 찬우형아가 놀이터에 있어서 특별히 민재만 잠시 산책을 나가보았어요~ 따스한 햇살을 받으니 기분이 좋은지 울지도않고 형아를 바라보더라구요
+오늘도 기저귀갈며 영어노래를 불러주니 뒤척이다가도 잠시 바라보며 웃기도했어요. 동요불러주는걸 너무 좋아하는 민재를 위해 영어동요를 좀 더 배워볼까합니다ㅋㅋㅋ
+
+참~ 우리민재 로션이 없더라구요 월요일까지 보내주시면 세수하고 뽀송뽀송한 피부에 발라주겠습니다❤
+
+주말에 찬우랑 민재랑 좋은시간 보내시구요^^
+월요일에는 우리민재 자고싶은 만큼 자고 좋은 컨디션으로 저와 더 신나게 잘놀겠습니다♡</p>
+    </div>
+  </section>
+
+  <!-- DAY 3: 2023-03-06 -->
+  <section class="day-section" id="day3">
+    <div class="day-header">
+      <span class="day-badge">셋째날 🚗</span>
+      <h2 class="day-title">자동차 레일이 신기한 민재</h2>
+      <span class="day-date">2023년 3월 6일 월요일</span>
+    </div>
+    <div class="gallery" data-day="2">
+      <div class="gallery-item" onclick="openLightbox(2,0)">
+        <img src="20230306_074118/image_0.jpg" alt="2023-03-06 사진 1" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(2,1)">
+        <img src="20230306_074118/image_1.jpg" alt="2023-03-06 사진 2" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(2,2)">
+        <img src="20230306_074118/image_2.jpg" alt="2023-03-06 사진 3" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(2,3)">
+        <img src="20230306_074118/image_3.jpg" alt="2023-03-06 사진 4" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(2,4)">
+        <img src="20230306_074118/image_4.jpg" alt="2023-03-06 사진 5" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+    </div>
+    <div class="diary-card">
+      <div class="diary-label">📝 선생님 일기</div>
+      <p class="diary-text">이틀 쉬고와서인지 다시 어린이집이 낯선 민재에요^^😭
+업혀서도 자고 이젠 휴식이불에서도 곤히 자는거보니 잠도 많이 왔지만 마냥 어린이집이 낯설지만은 않아보여요♡
+오전낮잠자고 그래도 기분이 좋아서 밥도 냠냠 잘먹었구요. 자동차레일이 신기한지 한참을 바라보며 웃기도했답니다^^
+우리민재 약 잘먹고 오늘 푹쉬어서 내일은 기분좋게 만나길 바랄게요❤</p>
+    </div>
+  </section>
+
+  <!-- DAY 4: 2023-03-07 -->
+  <section class="day-section" id="day4">
+    <div class="day-header">
+      <span class="day-badge">넷째날 🎈</span>
+      <h2 class="day-title">풍선을 만져보고 산책도 나가고!</h2>
+      <span class="day-date">2023년 3월 7일 화요일</span>
+    </div>
+    <div class="gallery" data-day="3">
+      <div class="gallery-item" onclick="openLightbox(3,0)">
+        <img src="20230307_045014/image_0.jpg" alt="2023-03-07 사진 1" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3,1)">
+        <img src="20230307_045014/image_1.jpg" alt="2023-03-07 사진 2" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3,2)">
+        <img src="20230307_045014/image_2.jpg" alt="2023-03-07 사진 3" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3,3)">
+        <img src="20230307_045014/image_3.jpg" alt="2023-03-07 사진 4" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3,4)">
+        <img src="20230307_045014/image_4.jpg" alt="2023-03-07 사진 5" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3,5)">
+        <img src="20230307_045014/image_5.jpg" alt="2023-03-07 사진 6" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3,6)">
+        <img src="20230307_045014/image_6.jpg" alt="2023-03-07 사진 7" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3,7)">
+        <img src="20230307_045014/image_7.jpg" alt="2023-03-07 사진 8" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+    </div>
+    <div class="diary-card">
+      <div class="diary-label">📝 선생님 일기</div>
+      <p class="diary-text">안녕하세요^^
+어제와는 달리 저한테 안겨서 조금울더니 그치고는 교실을 천천히 둘러보네요^^
+그래도 제 품에서 떨어지지는 않을려고하지만 배고플것같아 게살치즈죽을 먹여주니 한그릇 뚝딱!했답니다ㅎ 다른때와는 달리 울음이 줄어들긴했지만 잠이오는듯 해서 업고 오전낮잠 한시간 자고 일어났습니다.
+
+풍선을 매달아놓았더니 살펴보기도하고 풍선을 만져보고 손으로 툭 쳐보기도했어요^^
+울려고 하다가도 노래를 불러주면 저와 눈을 마추고 가만히 있는답니다ㅎ
+
+날씨가 따뜻해서 사랑반모두 산책을 나가보았어요. 민재는 업고 나갔더니 기분이 좋은지 '아 아'소리도 내어보고 두리번거리면서 놀이터를 살펴보기도했어요^^
+찬우형도 만났는데 우리찬우 아는척을 안하네요ㅋㅋㅋㅋㅋ
+유모차를 태워보니 유모차는 싫었는지 안탈려고하네요🤣
+
+점심도 감자반찬이랑 조금먹어보았어요~ 많이 먹지는 않아서 분유 100미리 정도 먹고 또다시 놀잇감으로 놀다 하원했습니다♡
+
+콧물로인해 컨디션이 안좋지않을까 걱정했는데 걱정과는 달리 잘생활해주어서 칭찬 듬뿍 해주었답니다
+가정에서도 우리 민재 칭찬많이 해주세요♡
+오늘도 좋은하루 되세요❤</p>
+    </div>
+  </section>
+
+  <!-- DAY 5: 2023-03-08 -->
+  <section class="day-section" id="day5">
+    <div class="day-header">
+      <span class="day-badge">다섯째날 🪞</span>
+      <h2 class="day-title">거울 앞에서 폭풍 옹알이!</h2>
+      <span class="day-date">2023년 3월 8일 수요일</span>
+    </div>
+    <div class="gallery" data-day="4">
+      <div class="gallery-item" onclick="openLightbox(4,0)">
+        <img src="20230308_050600/image_0.jpg" alt="2023-03-08 사진 1" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4,1)">
+        <img src="20230308_050600/image_1.jpg" alt="2023-03-08 사진 2" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4,2)">
+        <img src="20230308_050600/image_2.jpg" alt="2023-03-08 사진 3" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4,3)">
+        <img src="20230308_050600/image_3.jpg" alt="2023-03-08 사진 4" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4,4)">
+        <img src="20230308_050600/image_4.jpg" alt="2023-03-08 사진 5" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4,5)">
+        <img src="20230308_050600/image_5.jpg" alt="2023-03-08 사진 6" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4,6)">
+        <img src="20230308_050600/image_6.jpg" alt="2023-03-08 사진 7" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4,7)">
+        <img src="20230308_050600/image_7.jpg" alt="2023-03-08 사진 8" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">🔍</span></div>
+      </div>
+    </div>
+    <div class="diary-card">
+      <div class="diary-label">📝 선생님 일기</div>
+      <p class="diary-text">안녕하세요^^
+오늘도 민재는 기분이 좋은 하루입니다♡
+
+오전낮잠을 푹자고 기분이 좋은지 거울앞에서
+폭풍 옹알이를 했답니다.민재는 거울이 좋은가봐요😆
+오늘따라 친구에게 관심이 많은 민재였어요ㅎㅎ 친구머리를 몇번 만져보고 친구물건도 관심을 가져보네요^^
+걸음마 보조기로 걸음 연습도 해보았어요ㅎ
+한발 두발 연습해보는 민재가 너무 사랑스럽답니다♡
+점심으로 나온 카레에 밥을 조금씩 비벼주니 다섯숟가락정도 먹어보았어요~ 거울이 더 좋은지 다섯숟가락먹고는 거울앞에서 옹알이를 하네요ㅋㅋ 흥이 많은 민재에요❤
+
+하루하루가 다르게 적응해나가는 우리 민재 오늘도 사랑듬뿍 받고 하원했습니다^^
+남은 하루 즐겁게 보내시고
+내일도 밝은모습으로 민재랑 만날게요♡♡</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p><span class="heart">♡</span> 사랑스러운 정민재의 소중한 어린이집 첫 추억들 <span class="heart">♡</span></p>
+  <p style="margin-top:6px; font-size:0.75rem;">2023년 3월 · 사랑반 선생님과 함께한 이야기</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightboxOutside(event)">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button id="lightbox-prev" onclick="changeLightbox(-1)">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button id="lightbox-next" onclick="changeLightbox(1)">›</button>
+  <div id="lightbox-counter"></div>
+</div>
+
+<script>
+  // ===== LIGHTBOX DATA =====
+  const days = [
+    {
+      folder: '20230302_082644',
+      count: 6
+    },
+    {
+      folder: '20230303_080854',
+      count: 6
+    },
+    {
+      folder: '20230306_074118',
+      count: 5
+    },
+    {
+      folder: '20230307_045014',
+      count: 8
+    },
+    {
+      folder: '20230308_050600',
+      count: 8
+    }
+  ];
+
+  let currentDay = 0;
+  let currentIndex = 0;
+
+  function openLightbox(day, index) {
+    currentDay = day;
+    currentIndex = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function updateLightbox() {
+    const d = days[currentDay];
+    const src = d.folder + '/image_' + currentIndex + '.jpg';
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-counter').textContent =
+      (currentIndex + 1) + ' / ' + d.count;
+  }
+
+  function changeLightbox(dir) {
+    const d = days[currentDay];
+    currentIndex = (currentIndex + dir + d.count) % d.count;
+    updateLightbox();
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') changeLightbox(-1);
+    if (e.key === 'ArrowRight') changeLightbox(1);
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ===== NAV ACTIVE HIGHLIGHT =====
+  const sections = document.querySelectorAll('.day-section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const id = entry.target.id;
+        const link = document.querySelector('nav a[href="#' + id + '"]');
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
